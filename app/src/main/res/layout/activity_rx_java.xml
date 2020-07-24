@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RxJavaActivity">
 
     <Button
-        android:id="@+id/btn_to_rx_java"
+        android:id="@+id/btn_start_rx_java"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/to_rx_java"
-        android:textAllCaps="false"/>
+        android:text="@string/start_rx_java"
+        android:textAllCaps="false"
+        />
 
 </FrameLayout>
