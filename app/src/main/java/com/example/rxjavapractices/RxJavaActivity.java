@@ -42,7 +42,6 @@ public class RxJavaActivity extends AppCompatActivity {
 
             @Override
             public void onNext(final String s) {
-                Log.d("on next", s);
                 startBtn.post(new Runnable() {
                     @Override
                     public void run() {
