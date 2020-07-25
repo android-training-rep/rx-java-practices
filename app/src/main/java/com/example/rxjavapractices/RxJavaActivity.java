@@ -12,8 +12,11 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
 
@@ -33,11 +36,11 @@ public class RxJavaActivity extends AppCompatActivity {
     }
 
     private void startRxJava() {
-        Observer observer = new Observer<String>(){
 
+        Observer observer = new Observer<String>(){
             @Override
             public void onSubscribe(Disposable d) {
-
+                startBtn.setEnabled(false);
             }
 
             @Override
@@ -57,7 +60,7 @@ public class RxJavaActivity extends AppCompatActivity {
 
             @Override
             public void onComplete() {
-
+                startBtn.setEnabled(true);
             }
         };
 
@@ -70,6 +73,7 @@ public class RxJavaActivity extends AppCompatActivity {
                     SystemClock.sleep(1000);
                     count++;
                 }
+                emitter.onComplete();
             }
         });
 
@@ -81,6 +85,8 @@ public class RxJavaActivity extends AppCompatActivity {
                         return "The number is " + integer;
                     }
                 })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
     }
 }
